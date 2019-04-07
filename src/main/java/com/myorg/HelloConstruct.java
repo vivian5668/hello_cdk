@@ -4,6 +4,9 @@ import software.amazon.awscdk.Construct;
 import software.amazon.awscdk.services.iam.IPrincipal;
 import software.amazon.awscdk.services.s3.Bucket;
 import software.amazon.awscdk.services.s3.BucketProps;
+import software.amazon.awscdk.services.s3.EventType;
+import software.amazon.awscdk.services.sns.Topic;
+import software.amazon.awscdk.services.sqs.Queue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,5 +31,9 @@ public class HelloConstruct extends Construct {
      */
     public void grantRead(final IPrincipal principal) {
         buckets.forEach(b -> b.grantRead(principal, "*"));
+    }
+
+    public void publish2Topic(final Topic topic) {
+        buckets.forEach(b -> b.onEvent(EventType.ObjectCreated, topic));
     }
 }

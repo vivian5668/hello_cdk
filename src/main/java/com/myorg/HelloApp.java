@@ -9,6 +9,7 @@ public class HelloApp {
         App app = new App();
 
         new HelloStack(app, "hello-cdk-1");
-        new HelloStack(app, "hello-cdk-2");
+//t        new HelloStack(app, "hello-cdk-2");
+	    app.run();
     }
 }

@@ -28,11 +28,13 @@ public class HelloStack extends Stack {
 
         topic.subscribeQueue(queue);
 
+
         HelloConstruct hello = new HelloConstruct(this, "Buckets", HelloConstructProps.builder()
                 .withBucketCount(5)
                 .build());
 
         User user = new User(this, "MyUser", UserProps.builder().build());
         hello.grantRead(user);
+        hello.publish2Topic(topic);
     }
 }
